@@ -15,11 +15,9 @@ public class HookController {
         String container = "spring_boot_demo";
         String image = "yuexiang/spring-boot-demo";
 
-        Runtime.getRuntime().exec(format("docker stop %s", container));
-        Runtime.getRuntime().exec(format("docker rm %s", container));
-        Runtime.getRuntime().exec(format("docker rmi %s", image));
-        Runtime.getRuntime().exec(format("docker pull %s", image));
-        Runtime.getRuntime().exec(format("docker run -d --name=%s --network=host %s", container, image));
+        Runtime.getRuntime().exec(format(
+                "docker stop %s && docker rm %s && docker rmi %s && docker pull %s && docker run -d --name=%s --network=host %s",
+                container, container, image, image, container, image));
     }
 
 }

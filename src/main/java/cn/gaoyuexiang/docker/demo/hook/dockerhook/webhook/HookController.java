@@ -9,10 +9,10 @@ public class HookController {
 
     @PostMapping("/webhook/spring-boot-demo")
     public void updateImage() throws IOException {
-        Runtime.getRuntime().exec("docker stop spring-boot-demo");
+        Runtime.getRuntime().exec("docker stop spring_boot_demo");
         Runtime.getRuntime().exec("docker rmi yuexiang/spring-boot-demo");
         Runtime.getRuntime().exec("docker pull yuexiang/spring-boot-demo");
-        Runtime.getRuntime().exec("docker run -d --name spring-boot-demo --network=host yuexiang/spring-boot-demo");
+        Runtime.getRuntime().exec("docker run -d --name spring_boot_demo --network=host yuexiang/spring-boot-demo");
     }
     
 }

@@ -17,12 +17,14 @@ public class HookController {
         String container = "spring_boot_demo";
         String image = "yuexiang/spring-boot-demo";
 
-        Process proc = Runtime.getRuntime().exec(format(
+        String shell = format(
                 "docker stop %s && docker rm %s && docker rmi %s && docker pull %s && docker run -d --name=%s --network=host %s",
-                container, container, image, image, container, image));
+                container, container, image, image, container, image);
+        System.out.println(shell);
+        Process proc = Runtime.getRuntime().exec(shell);
         BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
         String s = null;
-        while((s = reader.readLine())!=null) {
+        while ((s = reader.readLine()) != null) {
             System.out.println(s);
         }
     }

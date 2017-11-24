@@ -1,3 +1,4 @@
+#should move this into PATH
 container=spring_boot_demo
 
 docker stop ${container}

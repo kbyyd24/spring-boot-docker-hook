@@ -18,11 +18,16 @@ public class HookController {
     @PostMapping("/webhook/spring-boot-demo")
     public void updateImage() throws IOException {
         Process proc = new ProcessBuilder("updateImage.sh").start();
-        if (proc.exitValue() == 0) {
-            logger.info("Update image successed at {}.", now(of("Asia/Shanghai")).toString());
-        } else {
-            logger.error("Something wrong in updateing image at {}.", now(of("Asia/Shanghai")).toString());
-        }
+        Runnable logThread = () -> {
+            while (proc.isAlive()) {
+            }
+            if (proc.exitValue() == 0) {
+                logger.info("New version is OK at {}", now(of("Asia/Shanghai")).toString());
+            } else {
+                logger.error("Update failed at {}", now(of("Asia/Shanghai")).toString());
+            }
+        };
+        logThread.run();
     }
 
 }
